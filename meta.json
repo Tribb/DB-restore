@@ -1,0 +1,16 @@
+{
+  "title": "Restore",
+  "version": "1.0.0",
+  "updated": "2001-01-01T00:00:00Z",
+  "device": "PlayStation 4",
+  "firmware": "",
+  "description": {
+    "default": "Restores the data saved in the 'Backup' payload.",
+    "en": "Restores the data saved in the 'Backup' payload."
+  },
+  "author": "Stooged",
+  "url": "https://github.com/stooged/Db_Restore",
+  "redirect": true,
+  "reload": false,
+  "offline": true
+}
