@@ -10,7 +10,7 @@
   },
   "author": "Stooged",
   "url": "https://github.com/stooged/Db_Restore",
-  "redirect": true,
+  "redirect": false,
   "reload": false,
   "offline": true
 }
