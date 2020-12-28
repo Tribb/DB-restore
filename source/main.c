@@ -1,19 +1,19 @@
-#include "kernel_utils.h"
+#include "ps4.h"
 
 int _main(struct thread *td) {
+  UNUSED(td);
+
   initKernel();
   initLibc();
-  initPthread();
 
-  uint64_t fw_version = get_fw_version();
-  jailbreak(fw_version);
+  jailbreak();
 
   initSysUtil();
 
-  int usbdir = open("/mnt/usb0/.dirtest", O_WRONLY | O_CREAT | O_TRUNC, 0777);
-  if (usbdir == -1) {
-    usbdir = open("/mnt/usb1/.dirtest", O_WRONLY | O_CREAT | O_TRUNC, 0777);
-    if (usbdir == -1) {
+  FILE *usbdir = fopen("/mnt/usb0/.dirtest", "w");
+  if (!usbdir) {
+    usbdir = fopen("/mnt/usb1/.dirtest", "w");
+    if (!usbdir) {
       printf_notification("Restoring from internal");
       if (file_exists("/system_data/priv/mms/app.bak")) {
         copy_file("/system_data/priv/mms/app.bak", "/system_data/priv/mms/app.db");
@@ -25,7 +25,7 @@ int _main(struct thread *td) {
         copy_file("/system_data/priv/mms/av_content_bg.bak", "/system_data/priv/mms/av_content_bg.db");
       }
     } else {
-      close(usbdir);
+      fclose(usbdir);
       printf_notification("Restoring from USB1");
       unlink("/mnt/usb1/.dirtest");
       mkdir("/mnt/usb1/DB_Backup/", 0777);
@@ -40,7 +40,7 @@ int _main(struct thread *td) {
       }
     }
   } else {
-    close(usbdir);
+    fclose(usbdir);
     printf_notification("Restoring from USB0");
     unlink("/mnt/usb0/.dirtest");
     mkdir("/mnt/usb0/DB_Backup/", 0777);
