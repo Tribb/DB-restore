@@ -56,7 +56,7 @@ int _main(struct thread *td) {
   }
 
   printf_notification("Restore complete!\nRebooting console...");
-  sceKernelSleep(8);
+  sceKernelSleep(10);
   reboot();
 
   return 0;
