@@ -10,10 +10,10 @@ int _main(struct thread *td) {
 
   initSysUtil();
 
-  FILE *usbdir = fopen("/mnt/usb0/.dirtest", "w");
-  if (!usbdir) {
-    usbdir = fopen("/mnt/usb1/.dirtest", "w");
-    if (!usbdir) {
+  touch_file("/mnt/usb0/.probe");
+  if (!file_exists("/mnt/usb0/.probe")) {
+    touch_file("/mnt/usb1/.probe");
+    if (!file_exists("/mnt/usb1/.probe")) {
       printf_notification("Restoring from internal");
       if (file_exists("/system_data/priv/mms/app.bak")) {
         copy_file("/system_data/priv/mms/app.bak", "/system_data/priv/mms/app.db");
@@ -25,33 +25,33 @@ int _main(struct thread *td) {
         copy_file("/system_data/priv/mms/av_content_bg.bak", "/system_data/priv/mms/av_content_bg.db");
       }
     } else {
-      fclose(usbdir);
       printf_notification("Restoring from USB1");
-      unlink("/mnt/usb1/.dirtest");
-      mkdir("/mnt/usb1/DB_Backup/", 0777);
-      if (file_exists("/mnt/usb1/DB_Backup/app.db")) {
-        copy_file("/mnt/usb1/DB_Backup/app.db", "/system_data/priv/mms/app.db");
+      unlink("/mnt/usb1/.probe");
+      mkdir("/mnt/usb1/PS4/", 0777);
+      mkdir("/mnt/usb1/PS4/Backup/", 0777);
+      if (file_exists("/mnt/usb1/PS4/Backup/app.db")) {
+        copy_file("/mnt/usb1/PS4/Backup/app.db", "/system_data/priv/mms/app.db");
       }
-      if (file_exists("/mnt/usb1/DB_Backup/addcont.db")) {
-        copy_file("/mnt/usb1/DB_Backup/addcont.db", "/system_data/priv/mms/addcont.db");
+      if (file_exists("/mnt/usb1/PS4/Backup/addcont.db")) {
+        copy_file("/mnt/usb1/PS4/Backup/addcont.db", "/system_data/priv/mms/addcont.db");
       }
-      if (file_exists("/mnt/usb1/DB_Backup/av_content_bg.db")) {
-        copy_file("/mnt/usb1/DB_Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
+      if (file_exists("/mnt/usb1/PS4/Backup/av_content_bg.db")) {
+        copy_file("/mnt/usb1/PS4/Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
       }
     }
   } else {
-    fclose(usbdir);
     printf_notification("Restoring from USB0");
-    unlink("/mnt/usb0/.dirtest");
-    mkdir("/mnt/usb0/DB_Backup/", 0777);
-    if (file_exists("/mnt/usb0/DB_Backup/app.db")) {
-      copy_file("/mnt/usb0/DB_Backup/app.db", "/system_data/priv/mms/app.db");
+    unlink("/mnt/usb0/.probe");
+    mkdir("/mnt/usb0/PS4/", 0777);
+    mkdir("/mnt/usb0/PS4/Backup/", 0777);
+    if (file_exists("/mnt/usb0/PS4/Backup/app.db")) {
+      copy_file("/mnt/usb0/PS4/Backup/app.db", "/system_data/priv/mms/app.db");
     }
-    if (file_exists("/mnt/usb0/DB_Backup/addcont.db")) {
-      copy_file("/mnt/usb0/DB_Backup/addcont.db", "/system_data/priv/mms/addcont.db");
+    if (file_exists("/mnt/usb0/PS4/Backup/addcont.db")) {
+      copy_file("/mnt/usb0/PS4/Backup/addcont.db", "/system_data/priv/mms/addcont.db");
     }
-    if (file_exists("/mnt/usb0/DB_Backup/av_content_bg.db")) {
-      copy_file("/mnt/usb0/DB_Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
+    if (file_exists("/mnt/usb0/PS4/Backup/av_content_bg.db")) {
+      copy_file("/mnt/usb0/PS4/Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
     }
   }
 
