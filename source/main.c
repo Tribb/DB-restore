@@ -67,7 +67,7 @@ int _main(struct thread *td) {
   printf_notification("Restore complete!\nRebooting console...");
 
 #ifdef DEBUG_SOCKET
-  printf_socket("\nClosing socket...\n\n");
+  printf_debug("Closing socket...\n");
   SckClose(DEBUG_SOCK);
 #endif
 
