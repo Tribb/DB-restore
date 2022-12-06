@@ -30,6 +30,12 @@ int _main(struct thread *td) {
       if (file_exists("/system_data/priv/mms/addcont.bak")) {
         copy_file("/system_data/priv/mms/addcont.bak", "/system_data/priv/mms/addcont.db");
       }
+      if (file_exists("/user/system/webkit/secure/appcache/ApplicationCache.bak")) {
+        copy_file("/user/system/webkit/secure/appcache/ApplicationCache.bak", "/user/system/webkit/secure/appcache/ApplicationCache.db");
+      }
+      if (file_exists("/user/system/webkit/webbrowser/appcache/ApplicationCache.bak")) {
+        copy_file("/user/system/webkit/webbrowser/appcache/ApplicationCache.bak", "/user/system/webkit/webbrowser/appcache/ApplicationCache.db");
+      }      
       if (file_exists("/system_data/priv/mms/av_content_bg.bak")) {
         copy_file("/system_data/priv/mms/av_content_bg.bak", "/system_data/priv/mms/av_content_bg.db");
       }
