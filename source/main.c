@@ -44,6 +44,12 @@ int _main(struct thread *td) {
       if (file_exists("/mnt/usb1/PS4/Backup/addcont.db")) {
         copy_file("/mnt/usb1/PS4/Backup/addcont.db", "/system_data/priv/mms/addcont.db");
       }
+      if (file_exists("/mnt/usb1/PS4/Backup/ApplicationCache.dbsec")) {
+        copy_file("/mnt/usb1/PS4/Backup/ApplicationCache.dbsec", "/user/system/webkit/secure/appcache/ApplicationCache.db");
+      }
+      if (file_exists("/mnt/usb1/PS4/Backup/ApplicationCache.db")) {
+        copy_file("/mnt/usb1/PS4/Backup/ApplicationCache.db", "/user/system/webkit/webbrowser/appcache/ApplicationCache.db");
+      }      
       if (file_exists("/mnt/usb1/PS4/Backup/av_content_bg.db")) {
         copy_file("/mnt/usb1/PS4/Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
       }
@@ -59,6 +65,12 @@ int _main(struct thread *td) {
     if (file_exists("/mnt/usb0/PS4/Backup/addcont.db")) {
       copy_file("/mnt/usb0/PS4/Backup/addcont.db", "/system_data/priv/mms/addcont.db");
     }
+    if (file_exists("/mnt/usb0/PS4/Backup/ApplicationCache.dbsec")) {
+        copy_file("/mnt/usb0/PS4/Backup/ApplicationCache.dbsec", "/user/system/webkit/secure/appcache/ApplicationCache.db");
+    }
+    if (file_exists("/mnt/usb0/PS4/Backup/ApplicationCache.db")) {
+        copy_file("/mnt/usb0/PS4/Backup/ApplicationCache.db", "/user/system/webkit/webbrowser/appcache/ApplicationCache.db");
+    }     
     if (file_exists("/mnt/usb0/PS4/Backup/av_content_bg.db")) {
       copy_file("/mnt/usb0/PS4/Backup/av_content_bg.db", "/system_data/priv/mms/av_content_bg.db");
     }
